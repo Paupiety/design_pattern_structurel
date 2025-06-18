@@ -1,7 +1,12 @@
 package org.example;
 
+import org.example.particles.ParticleFlyweight;
+import org.example.particles.FlyweightFactory;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        ParticleFlyweight particleFlyweight = FlyweightFactory.getInstance().getFactoryFly();
+        particleFlyweight.getParticleType("ArcaneGlow");
+        particleFlyweight.getParticleType("ManaBurst");
     }
 }
