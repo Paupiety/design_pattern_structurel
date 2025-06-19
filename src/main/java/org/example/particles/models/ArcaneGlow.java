@@ -1,8 +1,6 @@
 package org.example.particles.models;
 
-import java.awt.*;
-
-public class ArcaneGlow extends IParticule implements IParticlePrototype {
+public class ArcaneGlow extends IParticuleFlyweight implements IParticlePrototype {
 
     public ArcaneGlow(int x, int y, float speed, float spread, float lifetime, ParticleType particleType) {
         super(x,y,speed, spread,lifetime,particleType);

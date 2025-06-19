@@ -1,8 +1,6 @@
 package org.example.particles.models;
 
-import java.awt.*;
-
-public class ManaBurst extends IParticule implements IParticlePrototype {
+public class ManaBurst extends IParticuleFlyweight implements IParticlePrototype {
 
     public ManaBurst(int x, int y, float speed, float spread, float lifetime, ParticleType particleType) {
         super(x,y,speed, spread,lifetime,particleType);

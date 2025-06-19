@@ -1,7 +1,5 @@
 package org.example.particles;
 
-import org.example.particles.models.IParticleFlyweight;
-import org.example.particles.models.IParticlePrototype;
 import org.example.particles.models.ParticleType;
 
 import java.util.HashMap;

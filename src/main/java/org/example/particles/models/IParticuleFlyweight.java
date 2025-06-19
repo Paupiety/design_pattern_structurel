@@ -1,8 +1,6 @@
 package org.example.particles.models;
 
-import java.awt.*;
-
-public abstract class IParticule {
+public abstract class IParticuleFlyweight {
 
     public int x, y;
     public float speed;
@@ -10,7 +8,7 @@ public abstract class IParticule {
     public float lifetime;
     public ParticleType particleType;
 
-    public IParticule(int x, int y, float speed, float spread, float lifetime, ParticleType particleType) {
+    public IParticuleFlyweight(int x, int y, float speed, float spread, float lifetime, ParticleType particleType) {
         this.x = x;
         this.y = y;
         this.speed = speed;

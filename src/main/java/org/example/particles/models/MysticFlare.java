@@ -1,8 +1,6 @@
 package org.example.particles.models;
 
-import java.awt.*;
-
-public class MysticFlare extends IParticule implements IParticlePrototype {
+public class MysticFlare extends IParticuleFlyweight implements IParticlePrototype {
     private String flare;
 
     public MysticFlare(int x, int y, float speed, float spread, float lifetime, ParticleType particleType) {
