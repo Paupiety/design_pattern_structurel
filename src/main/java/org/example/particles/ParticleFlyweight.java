@@ -10,7 +10,7 @@ import java.util.Map;
 public class ParticleFlyweight {
     static Map<String, ParticleType> particleTypeList = new HashMap<>();
 
-    public static ParticleType GetParticleType(String texture, String shader, String physique) {
+    public ParticleType GetParticleType(String texture, String shader, String physique) {
         String attributs = texture + shader + physique;
         if (!particleTypeList.containsKey(attributs)) {
             particleTypeList.put(attributs, new ParticleType(texture, shader, physique));
