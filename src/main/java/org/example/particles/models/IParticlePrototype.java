@@ -1,5 +1,6 @@
 package org.example.particles.models;
 
 public interface IParticlePrototype {
-    public IParticleFlyweight clone();
+    public IParticlePrototype clone();
+    void setParticleType(ParticleType particleType);
 }

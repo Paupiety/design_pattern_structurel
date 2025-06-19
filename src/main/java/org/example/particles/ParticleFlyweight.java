@@ -1,19 +1,20 @@
 package org.example.particles;
 
 import org.example.particles.models.IParticleFlyweight;
+import org.example.particles.models.IParticlePrototype;
+import org.example.particles.models.ParticleType;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ParticleFlyweight {
-    static Map<String, IParticleFlyweight> particleTypeList = new HashMap<>();
+    static Map<String, ParticleType> particleTypeList = new HashMap<>();
 
-    public IParticleFlyweight getParticleType(String name) {
-        IParticleFlyweight result = particleTypeList.get(name);
-        if(result == null) {
-            result = ParticlePrototype.createParticles(name);
-            particleTypeList.put(name, result);
+    public static ParticleType GetParticleType(String texture, String shader, String physique) {
+        String attributs = texture + shader + physique;
+        if (!particleTypeList.containsKey(attributs)) {
+            particleTypeList.put(attributs, new ParticleType(texture, shader, physique));
         }
-        return result;
+        return particleTypeList.get(attributs);
     }
 }

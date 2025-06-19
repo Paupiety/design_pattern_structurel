@@ -2,25 +2,41 @@ package org.example.particles;
 
 import org.example.particles.models.*;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ParticlePrototype {
-    private static final Map<String, IParticleFlyweight> particleList = new HashMap<>();
+    private static final Map<String, IParticlePrototype> particleList = new HashMap<>();
 
     static {
-        ArcaneGlow arcaneGlow = new ArcaneGlow("ArcaneGlow", "texture", "shader", "physique", "glow");
-        ManaBurst manaBurst = new ManaBurst("ManaBrust", "texture", "shader", "physique", "glow");
-        MysticFlare mysticFlare = new MysticFlare("MysticFlare", "texture", "shader", "physique", "glow");
-        particleList.put("ArcaneGlow", arcaneGlow);
-        particleList.put("ManaBurst", manaBurst);
-        particleList.put("MysticFlare", mysticFlare);
+        particleList.put("ArcaneGlow", new ArcaneGlow(
+                0, 0, Color.WHITE, 0, 0f, 0f,
+                ParticleFlyweight.GetParticleType("arcane", "shader1", "physique1")
+        ));
+
+        particleList.put("ManaBurst", new ManaBurst(
+                0, 0, Color.WHITE, 0, 0f, 0f,
+                ParticleFlyweight.GetParticleType("mana", "shader2", "physique2")
+        ));
+
+        particleList.put("MysticFlare", new MysticFlare(
+                0, 0, Color.WHITE, 0, 0f, 0f,
+                ParticleFlyweight.GetParticleType("MysticFlare", "shader3", "physique3")
+        ));
     }
 
-    public static IParticleFlyweight createParticles(String type) {
-        if(particleList.containsKey(type)) {
-            return particleList.get(type).clone();
+
+    public static IParticlePrototype createParticles(String type, String texture, String shader, String physique) {
+        if (particleList.containsKey(type)) {
+            IParticlePrototype prototype = particleList.get(type).clone();
+
+            ParticleType customType = ParticleFlyweight.GetParticleType(texture, shader, physique);
+            prototype.setParticleType(customType);
+
+            return prototype;
         }
         throw new IllegalArgumentException("Prototype " + type + " introuvable");
     }
+
 }

@@ -1,16 +1,21 @@
 package org.example.particles.models;
 
-public class ManaBurst extends IParticleFlyweight {
-    private String brust;
+import java.awt.*;
 
-    public ManaBurst(String name, String texture, String shader, String physique, String brust) {
-        super(name, texture, shader, physique);
-        this.brust = brust;
+public class ManaBurst extends IParticule implements IParticlePrototype {
+
+    public ManaBurst(int x, int y, Color color, int count, float spread, float lifetime, ParticleType particleType) {
+        super(x,y,color,count,spread,lifetime,particleType);
     }
 
     @Override
-    public IParticleFlyweight clone() {
+    public void setParticleType(ParticleType type) {
+        this.particleType = type;
+    }
+
+    @Override
+    public IParticlePrototype clone() {
         System.out.println("Particule ManaBurst");
-        return new ManaBurst(this.name, this.texture, this.shader, this.physique, this.brust);
+        return new ArcaneGlow(this.x, this.y, this.color, this.count, this.spread, this.lifetime, this.particleType);
     }
 }

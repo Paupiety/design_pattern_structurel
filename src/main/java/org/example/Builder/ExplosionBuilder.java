@@ -1,43 +1,70 @@
 package org.example.Builder;
 
-import java.awt.Color;
+import org.example.particles.models.ParticleType;
 
-public class ExplosionBuilder implements IExplosionBuilder {
-    private final ExplosionConfig config = new ExplosionConfig();
+import java.awt.*;
+
+public class ExplosionBuilder extends ExplosionConfig implements IExplosionBuilder {
+
+    public ExplosionBuilder(int x, int y, Color color, int count, float spread, float lifetime, ParticleType particlesPrototype) {
+        super(x, y, color, count, spread, lifetime, particlesPrototype);
+    }
+
+    public ExplosionBuilder() {
+        super(0, 0, Color.WHITE, 0, 0f, 0f, null);
+    }
 
     @Override
-    public ExplosionBuilder withPosition(int x, int y) {
-        config.x = x;
-        config.y = y;
+    public IExplosionBuilder withPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
         return this;
     }
 
     @Override
-    public ExplosionBuilder withColor(Color c) {
-        config.color = c;
+    public IExplosionBuilder withColor(Color c) {
+        this.color = c;
         return this;
     }
 
     @Override
-    public ExplosionBuilder withCount(int n) {
-        config.count = n;
+    public IExplosionBuilder withCount(int n) {
+        this.count = n;
         return this;
     }
 
     @Override
-    public ExplosionBuilder withSpread(float s) {
-        config.spread = s;
+    public IExplosionBuilder withSpread(float s) {
+        this.spread = s;
         return this;
     }
 
     @Override
-    public ExplosionBuilder withLifetime(float t) {
-        config.lifetime = t;
+    public IExplosionBuilder withLifetime(float t) {
+        this.lifetime = t;
         return this;
     }
 
     @Override
-public ExplosionConfig build() {
-    return config;
-}
+    public IExplosionBuilder withParticles(ParticleType particlesPrototype) {
+        return null;
+    }
+
+
+    @Override
+    public ExplosionConfig build() {
+        return this;
+    }
+
+    @Override
+    public IExplosionBuilder cloneBuilder() {
+        ExplosionBuilder clone = new ExplosionBuilder();
+        clone.withPosition(this.x, this.y)
+                .withColor(this.color)
+                .withCount(this.count)
+                .withSpread(this.spread)
+                .withLifetime(this.lifetime)
+                .withParticles(this.particlesPrototype);
+        return clone;
+    }
 }
