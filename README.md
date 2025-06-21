@@ -1,4 +1,5 @@
 🚀 Ajouts & Bonus au Projet
+
 En complément des exigences initiales (Builder, Factory, Prototype, Flyweight, Proxy, Decorator), plusieurs ajouts fonctionnels ont été intégrés pour améliorer la qualité, la modularité et l'expérience développeur.
 
 🧱 1. Classe Abstraite AbstractParticle
