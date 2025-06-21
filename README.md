@@ -32,9 +32,11 @@ List<String> effets = List.of("glow", "shadow", "fade");
 ✅ Fonction : Une seule interface centralisée permet de créer une explosion complète, décorée et prête à simuler.
 
 Explosion explosion = ExplosionFacade.createExplosion(
+
     100, 150, "ArcaneGlow", "a.png", 
     List.of("glow", "shadow", "fade"), 
     2, 30f, 10f
+
 );
 
 ✅ Bénéfice : Faible couplage, simplicité d’utilisation, excellent point d’entrée pour une API ou une interface utilisateur.
