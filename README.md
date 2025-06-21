@@ -12,9 +12,10 @@ En complément des exigences initiales (Builder, Factory, Prototype, Flyweight, 
 ✅ But : Appliquer des effets visuels (glow, shadow, fade) sans instancier manuellement chaque décorateur.
 
 ✅ Implémentation : Système de Factory + mapping des décorateurs par nom.
+(
 
-List<String> effets = List.of("glow", "shadow", "fade");
-
+    List<String> effets = List.of("glow", "shadow", "fade");
+)
 ✅ Bénéfice : Configuration simple, extensibilité facile (par ex. via un fichier JSON ou une interface utilisateur).
 
 🕹 3. Déplacement automatique des particules
@@ -30,15 +31,14 @@ List<String> effets = List.of("glow", "shadow", "fade");
 ✅ But : Simplifier la création et configuration d’une explosion (Builder + Decorator + Factory).
 
 ✅ Fonction : Une seule interface centralisée permet de créer une explosion complète, décorée et prête à simuler.
+(
 
-Explosion explosion = ExplosionFacade.createExplosion(
-
-    100, 150, "ArcaneGlow", "a.png", 
-    List.of("glow", "shadow", "fade"), 
-    2, 30f, 10f
-
-);
-
+    Explosion explosion = ExplosionFacade.createExplosion(
+        100, 150, "ArcaneGlow", "a.png", 
+        List.of("glow", "shadow", "fade"), 
+        2, 30f, 10f
+    );
+)
 ✅ Bénéfice : Faible couplage, simplicité d’utilisation, excellent point d’entrée pour une API ou une interface utilisateur.
 
 📌 Conclusion
