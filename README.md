@@ -15,7 +15,6 @@ En complément des exigences initiales (Builder, Factory, Prototype, Flyweight, 
 (
 
     List<String> effets = List.of("glow", "shadow", "fade");
-)
 ✅ Bénéfice : Configuration simple, extensibilité facile (par ex. via un fichier JSON ou une interface utilisateur).
 
 🕹 3. Déplacement automatique des particules
@@ -38,7 +37,6 @@ En complément des exigences initiales (Builder, Factory, Prototype, Flyweight, 
         List.of("glow", "shadow", "fade"), 
         2, 30f, 10f
     );
-)
 ✅ Bénéfice : Faible couplage, simplicité d’utilisation, excellent point d’entrée pour une API ou une interface utilisateur.
 
 📌 Conclusion
