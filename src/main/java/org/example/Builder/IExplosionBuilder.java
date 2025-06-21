@@ -1,8 +1,6 @@
 package org.example.Builder;
 
-import org.example.particles.models.IParticlePrototype;
-import org.example.particles.models.ParticleType;
-
+import org.example.particles.models.*;
 import java.awt.Color;
 
 public interface IExplosionBuilder {
@@ -10,8 +8,10 @@ public interface IExplosionBuilder {
     IExplosionBuilder withColor(Color c);
     IExplosionBuilder withCount(int n);
     IExplosionBuilder withSpread(float s);
-    IExplosionBuilder withLifetime(float f);
-    IExplosionBuilder withParticles(ParticleType particlesPrototype);
+    IExplosionBuilder withLifetime(float t);
+    IExplosionBuilder withParticleType(ParticleType type);
+    IExplosionBuilder withParticleName(String name);
+    IExplosionBuilder addDecorator(Class<? extends IParticlePrototype> decoratorClass);
     ExplosionConfig build();
     IExplosionBuilder cloneBuilder();
 }

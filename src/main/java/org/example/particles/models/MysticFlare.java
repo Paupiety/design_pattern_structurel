@@ -1,20 +1,18 @@
 package org.example.particles.models;
 
-public class MysticFlare extends IParticuleFlyweight implements IParticlePrototype {
-    private String flare;
+public class MysticFlare extends AbstractParticle {
 
-    public MysticFlare(int x, int y, float speed, float spread, float lifetime, ParticleType particleType) {
-        super(x,y,speed,spread,lifetime,particleType);
+    public MysticFlare(ParticleType type) {
+        super(type);
     }
 
     @Override
-    public void setParticleType(ParticleType type) {
-        this.particleType = type;
+    public void render() {
+        System.out.println("MysticFlare rendering at (" + x + ", " + y + ") with texture: " + particleType.getTexture());
     }
 
     @Override
-    public IParticlePrototype clone() {
-        System.out.println("Particule MysticFlare");
-        return new MysticFlare(this.x, this.y, this.speed, this.spread, this.lifetime, this.particleType);
+    public void update(float dt) {
+        super.update(dt);
     }
 }

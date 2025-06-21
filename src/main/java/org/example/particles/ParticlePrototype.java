@@ -1,42 +1,23 @@
 package org.example.particles;
 
 import org.example.particles.models.*;
-
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ParticlePrototype {
-    private static final Map<String, IParticlePrototype> particleList = new HashMap<>();
+    private static final Map<String, IParticlePrototype> prototypes = new HashMap<>();
 
     static {
-        ParticleFlyweight particleFlyweight = FlyweightFactory.getInstance().getFactoryFly();
-
-        particleList.put("ArcaneGlow", new ArcaneGlow(
-                0, 0, 0f, 0f, 0f,
-                particleFlyweight.GetParticleType("arcane", "shader1", "physique1")
-        ));
-
-        particleList.put("ManaBurst", new ManaBurst(
-                0, 0, 0f, 0f, 0f,
-                particleFlyweight.GetParticleType("mana", "shader2", "physique2")
-        ));
-
-        particleList.put("MysticFlare", new MysticFlare(
-                0, 0, 0f, 0f, 0f,
-                particleFlyweight.GetParticleType("MysticFlare", "shader3", "physique3")
-        ));
+        prototypes.put("ArcaneGlow", new ArcaneGlow(new ParticleType("a.png", "s", "p")));
+        prototypes.put("ManaBurst", new ManaBurst(new ParticleType("b.png", "s", "p")));
+        prototypes.put("MysticFlare", new MysticFlare(new ParticleType("c.png", "s", "p")));
     }
 
-
-    public static IParticlePrototype createParticles(String type, ParticleType particleType) {
-        if (particleList.containsKey(type)) {
-            IParticlePrototype prototype = particleList.get(type).clone();
-            prototype.setParticleType(particleType);
-
-            return prototype;
+    public static IParticlePrototype getClone(String name) {
+        IParticlePrototype prototype = prototypes.get(name);
+        if (prototype != null) {
+            return prototype.clone();
         }
-        throw new IllegalArgumentException("Prototype " + type + " introuvable");
+        throw new IllegalArgumentException("Prototype not found: " + name);
     }
-
 }

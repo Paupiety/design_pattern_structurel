@@ -1,16 +1,45 @@
 package org.example;
 
-import org.example.particles.ParticleFlyweight;
-import org.example.particles.FlyweightFactory;
-import org.example.particles.ParticlePrototype;
-import org.example.particles.models.IParticlePrototype;
-import org.example.particles.models.ParticleType;
+import org.example.Facade.ExplosionFacade;
+import org.example.Factory_Method.Explosion;
+
+import java.awt.Color;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        ParticleFlyweight particleFlyweight = FlyweightFactory.getInstance().getFactoryFly();
-        ParticleType particleType = particleFlyweight.GetParticleType("texture", "shader", "physique");
-        IParticlePrototype arcaneGlow = ParticlePrototype.createParticles("ArcaneGlow", particleType);
-        IParticlePrototype manaBurst = ParticlePrototype.createParticles("ManaBurst", particleType);
+
+        ExplosionFacade facade = new ExplosionFacade();
+
+        Explosion explosion = facade.createExplosion(
+                "ArcaneGlow",
+                "a.png",
+                "defaultShader",
+                "defaultPhysics",
+                100, 150,
+                Color.RED,
+                3,
+                5f,
+                30f,
+                List.of("glow", "shadow", "fadeout")  // via noms simples
+        );
+
+        float dt = 0.5f;
+        float time = 0f;
+
+        while (explosion.isAlive()) {
+            System.out.println("\n--- Time: " + time + "s ---");
+            explosion.update(dt);
+            explosion.render();
+            time += dt;
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
+        System.out.println("\nExplosion ended.");
     }
 }

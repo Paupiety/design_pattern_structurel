@@ -1,18 +1,19 @@
 package org.example.Builder;
 
-import org.example.particles.models.ParticleType;
-
+import org.example.particles.models.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ExplosionBuilder extends ExplosionConfig implements IExplosionBuilder {
-
-    public ExplosionBuilder(int x, int y, Color color, int count, float spread, float lifetime, ParticleType particlesPrototype) {
-        super(x, y, color, count, spread, lifetime, particlesPrototype);
-    }
-
-    public ExplosionBuilder() {
-        super(0, 0, Color.WHITE, 0, 0f, 0f, null);
-    }
+public class ExplosionBuilder implements IExplosionBuilder {
+    private int x, y;
+    private Color color;
+    private int count;
+    private float spread;
+    private float lifetime;
+    private ParticleType particleType;
+    private String particleName;
+    private List<Class<? extends IParticlePrototype>> decorators = new ArrayList<>();
 
     @Override
     public IExplosionBuilder withPosition(int x, int y) {
@@ -46,25 +47,37 @@ public class ExplosionBuilder extends ExplosionConfig implements IExplosionBuild
     }
 
     @Override
-    public IExplosionBuilder withParticles(ParticleType particlesPrototype) {
-        return null;
-    }
-
-
-    @Override
-    public ExplosionConfig build() {
+    public IExplosionBuilder withParticleType(ParticleType type) {
+        this.particleType = type;
         return this;
     }
 
     @Override
+    public IExplosionBuilder withParticleName(String name) {
+        this.particleName = name;
+        return this;
+    }
+
+    @Override
+    public IExplosionBuilder addDecorator(Class<? extends IParticlePrototype> decoratorClass) {
+        decorators.add(decoratorClass);
+        return this;
+    }
+
+    @Override
+    public ExplosionConfig build() {
+        return new ExplosionConfig(x, y, color, count, spread, lifetime, particleType, particleName, decorators);
+    }
+
+    @Override
     public IExplosionBuilder cloneBuilder() {
-        ExplosionBuilder clone = new ExplosionBuilder();
-        clone.withPosition(this.x, this.y)
-                .withColor(this.color)
-                .withCount(this.count)
-                .withSpread(this.spread)
-                .withLifetime(this.lifetime)
-                .withParticles(this.particlesPrototype);
-        return clone;
+        return new ExplosionBuilder()
+            .withPosition(x, y)
+            .withColor(color)
+            .withCount(count)
+            .withSpread(spread)
+            .withLifetime(lifetime)
+            .withParticleType(particleType)
+            .withParticleName(particleName);
     }
 }
